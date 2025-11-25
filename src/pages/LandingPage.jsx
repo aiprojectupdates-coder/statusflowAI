@@ -128,7 +128,7 @@ const LandingPage = () => {
                 <div className="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-cyan-500 transition-colors duration-300">
                   <BarChart3 className="w-8 h-8 text-cyan-500 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="2xl font-light mb-4">3. Visualization</h3>
+                <h3 className="text-2xl font-light mb-4">3. Visualization</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Key metrics and summaries are visualized in real-time Superset dashboards.
                 </p>
@@ -138,7 +138,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Detailed Technical Workflow Section (N8N image replacement) */}
+      {/* Detailed Technical Workflow Section (New Replacement) */}
       <section id="detailed-workflow" className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
@@ -183,14 +183,13 @@ const LandingPage = () => {
                   </li>
                 </ul>
               </div>
-              
-              {/* IMAGE PLACEMENT FOR STEP 1 */}
               <div className="flex-1 w-full">
                   <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
                       <img
-                          src="n8nworkflow.png" 
+                          src={process.env.PUBLIC_URL + '/n8nworkflow.png'}
                           alt="Workflow Visualization Screenshot"
-                          className="w-full h-full object-cover" 
+                          // CHANGED: object-cover to object-contain to prevent cropping
+                          className="w-full h-full object-contain" 
                       />
                   </div>
               </div>
@@ -211,14 +210,13 @@ const LandingPage = () => {
                   The AI processes the unstructured logs and commits, synthesizing them into a coherent <strong>Executive Summary</strong>. This summary is then formatted and pushed directly to a locally hosted <span className="font-medium text-cyan-600">Postgres Database</span>, ready for retrieval.
                 </p>
               </div>
-              
-              {/* IMAGE PLACEMENT FOR STEP 2 (Replaces Cpu icon) */}
               <div className="flex-1 w-full">
                   <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
                       <img
-                          src="n8noutput.png" 
+                          src={process.env.PUBLIC_URL + '/n8noutput.png'}
                           alt="Workflow Visualization Screenshot"
-                          className="w-full h-full object-cover" 
+                          // CHANGED: object-cover to object-contain to prevent cropping
+                          className="w-full h-full object-contain" 
                       />
                   </div>
               </div>
@@ -239,14 +237,13 @@ const LandingPage = () => {
                   It parses specific data points—such as tickets closed, budget burned, hours logged, and risk scores—to generate measured <strong>Key Performance Indicators (KPIs)</strong>. These structured metrics are systematically pushed to the same Postgres database, ensuring both qualitative and quantitative data live side-by-side.
                 </p>
               </div>
-              
-              {/* IMAGE PLACEMENT FOR STEP 3 (Replaces Server icon) */}
               <div className="flex-1 w-full">
                   <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
                       <img
-                          src="KPI.gif" 
+                          src={process.env.PUBLIC_URL + '/Seq.gif'}
                           alt="Workflow Visualization Screenshot"
-                          className="w-full h-full object-cover" 
+                          // CHANGED: object-cover to object-contain to prevent cropping
+                          className="w-full h-full object-contain" 
                       />
                   </div>
               </div>
@@ -267,14 +264,13 @@ const LandingPage = () => {
                   Superset connects to the Postgres DB to receive real-time updates. It automatically refreshes the dashboard, combining the AI-generated Executive Summary with the hard KPI metrics. This provides stakeholders with a complete, instant view of the project's status without a single manual report being written.
                 </p>
               </div>
-              
-              {/* IMAGE PLACEMENT FOR STEP 4 (Replaces LayoutDashboard icon) */}
               <div className="flex-1 w-full">
                   <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
                       <img
-                          src="Seq.gif" 
+                          src={process.env.PUBLIC_URL + '/KPI.gif'}
                           alt="Workflow Visualization Screenshot"
-                          className="w-full h-full object-cover" 
+                          // CHANGED: object-cover to object-contain to prevent cropping
+                          className="w-full h-full object-contain" 
                       />
                   </div>
               </div>
@@ -293,7 +289,7 @@ const LandingPage = () => {
           
           <Card className="border-gray-200 bg-gray-50">
             <CardContent className="p-12">
-              <h3 className="text-2xl font-light mb-6 text-cyan-500">Thesis Abstract</h3>
+              <h3 className="2xl font-light mb-6 text-cyan-500">Thesis Abstract</h3>
               <p className="text-lg text-gray-700 leading-relaxed">
                 This project introduces an AI-driven automation system that eliminates the need for manual project status reporting. By integrating multiple project data sources, the system generates a humanized executive-level project status summary suitable for management consumption. For demonstration purposes, the implementation uses Slack, GitHub, QASE, Clockify, Google Sheets, and Confluence as example data sources. The automation architecture, however, is fully extensible and can be scaled to other comparable tools such as alternative communication platforms, task management systems, risk registers, documentation repositories, or time-tracking solutions to achieve the same automated reporting outcomes. Key project KPIs are automatically stored in a database and displayed through Superset dashboards to enable data-driven decision-making. The objective of the thesis is to demonstrate how automation can support Project Managers who struggle to gather updates from multiple teams and tools, and who often face challenges translating technical information into clear, human-understandable updates for executive management.
               </p>
@@ -353,7 +349,7 @@ const LandingPage = () => {
                     <CheckCircle className="w-6 h-6 text-cyan-500 group-hover:text-white transition-colors duration-300" />
                   </div>
                   <div>
-                    <h3 className="2xl font-light mb-3">Removes Bias</h3>
+                    <h3 className="text-2xl font-light mb-3">Removes Bias</h3>
                     <p className="text-gray-600 leading-relaxed">
                       AI reports are based purely on data, eliminating subjective interpretation and human error.
                     </p>
@@ -369,7 +365,7 @@ const LandingPage = () => {
                     <Rocket className="w-6 h-6 text-cyan-500 group-hover:text-white transition-colors duration-300" />
                   </div>
                   <div>
-                    <h3 className="2xl font-light mb-3">Executive Communication</h3>
+                    <h3 className="text-2xl font-light mb-3">Executive Communication</h3>
                     <p className="text-gray-600 leading-relaxed">
                       Natural language summaries that are perfect for management meetings and stakeholder updates.
                     </p>
