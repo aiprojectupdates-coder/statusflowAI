@@ -6,7 +6,8 @@ import { Toaster } from './components/ui/sonner';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      {/* ADD basename prop with your repository name */}
+      <BrowserRouter basename="/statusflowAI">
         <Routes>
           <Route path="/" element={<LandingPage />} />
         </Routes>
