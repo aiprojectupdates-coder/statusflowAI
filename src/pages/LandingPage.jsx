@@ -199,16 +199,14 @@ const LandingPage = () => {
                 </ul>
               </div>
               <div className="flex-1 w-full">
-    <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
-        <img
-            // IMPORTANT: Place your image file (e.g., n8n-workflow.png) inside your 'public' folder.
-            // The leading slash (/) points to the project root.
-            src="/n8nworkflow.png" 
-            alt="N8N Integration Workflow Visualization Screenshot"
-            className="w-full h-full object-cover" 
-        />
-    </div>
-</div>
+                <div className="aspect-video bg-white rounded-2xl shadow-xl border border-gray-100 flex items-center justify-center p-8 relative overflow-hidden">
+                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 to-transparent opacity-50"></div>
+                   <div className="relative z-10 text-center">
+                      <Network className="w-24 h-24 text-cyan-500 mx-auto mb-4 opacity-80" />
+                      <span className="text-gray-400 font-light">N8N Integration Workflow Visualization</span>
+                   </div>
+                </div>
+              </div>
             </div>
 
             {/* Step 2: AI Processing - Text Right, Image Left */}
