@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react'; // Added useState
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { 
@@ -18,14 +18,63 @@ import {
   Server,
   Cpu,
   Network,
-  LayoutDashboard
+  LayoutDashboard,
+  X // Added X for close icon
 } from 'lucide-react';
+
+// --- Image Modal Component (Internal) ---
+const ImageModal = ({ src, isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    // Backdrop: Fixed, full screen, dark overlay
+    <div 
+      className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 cursor-pointer"
+      onClick={onClose} // Click background to close
+    >
+      <div 
+        // Modal Container: Centers the image and prevents accidental closing
+        className="relative max-w-7xl max-h-[90vh] bg-white rounded-lg shadow-2xl overflow-hidden"
+        onClick={e => e.stopPropagation()} // Prevent clicks inside the modal from closing it
+      >
+        <button 
+          onClick={onClose}
+          className="absolute top-0 right-0 m-4 p-2 text-white bg-black/50 hover:bg-black/80 rounded-full transition-colors z-50"
+          aria-label="Close enlarged view"
+        >
+          <X className="w-6 h-6" />
+        </button>
+        <img 
+          src={src} 
+          alt="Enlarged Workflow Visualization" 
+          className="max-w-full max-h-full object-contain" // Keeps image scaled to fit
+        />
+      </div>
+    </div>
+  );
+};
+// ----------------------------------------
 
 
 const LandingPage = () => {
   const heroRef = useRef(null);
-  // Removed: useToast, formData, and isSubmitting state
+  // State for image modal
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalImageSrc, setModalImageSrc] = useState('');
 
+  // Handlers for modal
+  const openModal = (src) => {
+    setModalImageSrc(src);
+    setModalOpen(true);
+    document.body.style.overflow = 'hidden'; // Prevents background scrolling
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setModalImageSrc('');
+    document.body.style.overflow = 'unset'; // Re-enables background scrolling
+  };
+  
   useEffect(() => {
     const shapes = document.querySelectorAll('.floating-shape');
     shapes.forEach((shape, index) => {
@@ -40,10 +89,10 @@ const LandingPage = () => {
     document.getElementById('detailed-workflow')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Removed: handleInputChange and handleSubmit functions
 
   return (
     <div className="min-h-screen bg-white">
+      
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -184,11 +233,13 @@ const LandingPage = () => {
                 </ul>
               </div>
               <div className="flex-1 w-full">
-                  <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
+                  <div 
+                    className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                    onClick={() => openModal(process.env.PUBLIC_URL + '/n8nworkflow.png')}
+                  >
                       <img
                           src={process.env.PUBLIC_URL + '/n8nworkflow.png'}
                           alt="Workflow Visualization Screenshot"
-                          // CHANGED: object-cover to object-contain to prevent cropping
                           className="w-full h-full object-contain" 
                       />
                   </div>
@@ -211,11 +262,13 @@ const LandingPage = () => {
                 </p>
               </div>
               <div className="flex-1 w-full">
-                  <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
+                  <div 
+                    className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                    onClick={() => openModal(process.env.PUBLIC_URL + '/n8noutput.png')}
+                  >
                       <img
                           src={process.env.PUBLIC_URL + '/n8noutput.png'}
                           alt="Workflow Visualization Screenshot"
-                          // CHANGED: object-cover to object-contain to prevent cropping
                           className="w-full h-full object-contain" 
                       />
                   </div>
@@ -238,11 +291,13 @@ const LandingPage = () => {
                 </p>
               </div>
               <div className="flex-1 w-full">
-                  <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
+                  <div 
+                    className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                    onClick={() => openModal(process.env.PUBLIC_URL + '/Seq.gif')}
+                  >
                       <img
                           src={process.env.PUBLIC_URL + '/Seq.gif'}
                           alt="Workflow Visualization Screenshot"
-                          // CHANGED: object-cover to object-contain to prevent cropping
                           className="w-full h-full object-contain" 
                       />
                   </div>
@@ -265,11 +320,13 @@ const LandingPage = () => {
                 </p>
               </div>
               <div className="flex-1 w-full">
-                  <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
+                  <div 
+                    className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                    onClick={() => openModal(process.env.PUBLIC_URL + '/KPI.gif')}
+                  >
                       <img
                           src={process.env.PUBLIC_URL + '/KPI.gif'}
                           alt="Workflow Visualization Screenshot"
-                          // CHANGED: object-cover to object-contain to prevent cropping
                           className="w-full h-full object-contain" 
                       />
                   </div>
@@ -289,7 +346,7 @@ const LandingPage = () => {
           
           <Card className="border-gray-200 bg-gray-50">
             <CardContent className="p-12">
-              <h3 className="2xl font-light mb-6 text-cyan-500">Thesis Abstract</h3>
+              <h3 className="text-2xl font-light mb-6 text-cyan-500">Thesis Abstract</h3>
               <p className="text-lg text-gray-700 leading-relaxed">
                 This project introduces an AI-driven automation system that eliminates the need for manual project status reporting. By integrating multiple project data sources, the system generates a humanized executive-level project status summary suitable for management consumption. For demonstration purposes, the implementation uses Slack, GitHub, QASE, Clockify, Google Sheets, and Confluence as example data sources. The automation architecture, however, is fully extensible and can be scaled to other comparable tools such as alternative communication platforms, task management systems, risk registers, documentation repositories, or time-tracking solutions to achieve the same automated reporting outcomes. Key project KPIs are automatically stored in a database and displayed through Superset dashboards to enable data-driven decision-making. The objective of the thesis is to demonstrate how automation can support Project Managers who struggle to gather updates from multiple teams and tools, and who often face challenges translating technical information into clear, human-understandable updates for executive management.
               </p>
@@ -389,6 +446,14 @@ const LandingPage = () => {
           </div>
         </div>
       </footer>
+      
+      {/* Modal is rendered outside the main layout */}
+      <ImageModal 
+        src={modalImageSrc} 
+        isOpen={modalOpen} 
+        onClose={closeModal} 
+      />
+      
     </div>
   );
 };
