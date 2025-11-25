@@ -1,9 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
-import { Input } from '../components/ui/input';
-import { Textarea } from '../components/ui/textarea';
-import { Label } from '../components/ui/label';
 import { 
   Clock, 
   TrendingUp, 
@@ -18,8 +15,6 @@ import {
   Sheet,
   Timer,
   FileCheck,
-  Send,
-  Loader2,
   Server,
   Cpu,
   Network,
@@ -27,18 +22,9 @@ import {
 } from 'lucide-react';
 
 
-
-
 const LandingPage = () => {
   const heroRef = useRef(null);
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // Removed: useToast, formData, and isSubmitting state
 
   useEffect(() => {
     const shapes = document.querySelectorAll('.floating-shape');
@@ -54,8 +40,7 @@ const LandingPage = () => {
     document.getElementById('detailed-workflow')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  
-  
+  // Removed: handleInputChange and handleSubmit functions
 
   return (
     <div className="min-h-screen bg-white">
@@ -143,7 +128,7 @@ const LandingPage = () => {
                 <div className="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-cyan-500 transition-colors duration-300">
                   <BarChart3 className="w-8 h-8 text-cyan-500 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="text-2xl font-light mb-4">3. Visualization</h3>
+                <h3 className="2xl font-light mb-4">3. Visualization</h3>
                 <p className="text-gray-600 leading-relaxed">
                   Key metrics and summaries are visualized in real-time Superset dashboards.
                 </p>
@@ -153,7 +138,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Detailed Technical Workflow Section (New Replacement) */}
+      {/* Detailed Technical Workflow Section (N8N image replacement) */}
       <section id="detailed-workflow" className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
@@ -198,14 +183,16 @@ const LandingPage = () => {
                   </li>
                 </ul>
               </div>
+              
+              {/* IMAGE PLACEMENT FOR STEP 1 */}
               <div className="flex-1 w-full">
-                <div className="aspect-video bg-white rounded-2xl shadow-xl border border-gray-100 flex items-center justify-center p-8 relative overflow-hidden">
-                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 to-transparent opacity-50"></div>
-                   <div className="relative z-10 text-center">
-                      <Network className="w-24 h-24 text-cyan-500 mx-auto mb-4 opacity-80" />
-                      <span className="text-gray-400 font-light">N8N Integration Workflow Visualization</span>
-                   </div>
-                </div>
+                  <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
+                      <img
+                          src="n8nworkflow.png" 
+                          alt="Workflow Visualization Screenshot"
+                          className="w-full h-full object-cover" 
+                      />
+                  </div>
               </div>
             </div>
 
@@ -224,14 +211,16 @@ const LandingPage = () => {
                   The AI processes the unstructured logs and commits, synthesizing them into a coherent <strong>Executive Summary</strong>. This summary is then formatted and pushed directly to a locally hosted <span className="font-medium text-cyan-600">Postgres Database</span>, ready for retrieval.
                 </p>
               </div>
+              
+              {/* IMAGE PLACEMENT FOR STEP 2 (Replaces Cpu icon) */}
               <div className="flex-1 w-full">
-                <div className="aspect-video bg-white rounded-2xl shadow-xl border border-gray-100 flex items-center justify-center p-8 relative overflow-hidden">
-                   <div className="absolute inset-0 bg-gradient-to-bl from-gray-50 to-transparent opacity-50"></div>
-                   <div className="relative z-10 text-center">
-                      <Cpu className="w-24 h-24 text-gray-700 mx-auto mb-4 opacity-80" />
-                      <span className="text-gray-400 font-light">LLM Processing & Database Injection</span>
-                   </div>
-                </div>
+                  <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
+                      <img
+                          src="n8noutput.png" 
+                          alt="Workflow Visualization Screenshot"
+                          className="w-full h-full object-cover" 
+                      />
+                  </div>
               </div>
             </div>
 
@@ -250,14 +239,16 @@ const LandingPage = () => {
                   It parses specific data points—such as tickets closed, budget burned, hours logged, and risk scores—to generate measured <strong>Key Performance Indicators (KPIs)</strong>. These structured metrics are systematically pushed to the same Postgres database, ensuring both qualitative and quantitative data live side-by-side.
                 </p>
               </div>
+              
+              {/* IMAGE PLACEMENT FOR STEP 3 (Replaces Server icon) */}
               <div className="flex-1 w-full">
-                <div className="aspect-video bg-white rounded-2xl shadow-xl border border-gray-100 flex items-center justify-center p-8 relative overflow-hidden">
-                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 to-transparent opacity-50"></div>
-                   <div className="relative z-10 text-center">
-                      <Server className="w-24 h-24 text-cyan-500 mx-auto mb-4 opacity-80" />
-                      <span className="text-gray-400 font-light">Parallel Data Pipeline Architecture</span>
-                   </div>
-                </div>
+                  <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
+                      <img
+                          src="KPI.gif" 
+                          alt="Workflow Visualization Screenshot"
+                          className="w-full h-full object-cover" 
+                      />
+                  </div>
               </div>
             </div>
 
@@ -276,14 +267,16 @@ const LandingPage = () => {
                   Superset connects to the Postgres DB to receive real-time updates. It automatically refreshes the dashboard, combining the AI-generated Executive Summary with the hard KPI metrics. This provides stakeholders with a complete, instant view of the project's status without a single manual report being written.
                 </p>
               </div>
+              
+              {/* IMAGE PLACEMENT FOR STEP 4 (Replaces LayoutDashboard icon) */}
               <div className="flex-1 w-full">
-                <div className="aspect-video bg-white rounded-2xl shadow-xl border border-gray-100 flex items-center justify-center p-8 relative overflow-hidden">
-                   <div className="absolute inset-0 bg-gradient-to-bl from-gray-50 to-transparent opacity-50"></div>
-                   <div className="relative z-10 text-center">
-                      <LayoutDashboard className="w-24 h-24 text-gray-700 mx-auto mb-4 opacity-80" />
-                      <span className="text-gray-400 font-light">Superset Dashboard Visualization</span>
-                   </div>
-                </div>
+                  <div className="aspect-video rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
+                      <img
+                          src="Seq.gif" 
+                          alt="Workflow Visualization Screenshot"
+                          className="w-full h-full object-cover" 
+                      />
+                  </div>
               </div>
             </div>
 
@@ -360,7 +353,7 @@ const LandingPage = () => {
                     <CheckCircle className="w-6 h-6 text-cyan-500 group-hover:text-white transition-colors duration-300" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-light mb-3">Removes Bias</h3>
+                    <h3 className="2xl font-light mb-3">Removes Bias</h3>
                     <p className="text-gray-600 leading-relaxed">
                       AI reports are based purely on data, eliminating subjective interpretation and human error.
                     </p>
@@ -376,7 +369,7 @@ const LandingPage = () => {
                     <Rocket className="w-6 h-6 text-cyan-500 group-hover:text-white transition-colors duration-300" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-light mb-3">Executive Communication</h3>
+                    <h3 className="2xl font-light mb-3">Executive Communication</h3>
                     <p className="text-gray-600 leading-relaxed">
                       Natural language summaries that are perfect for management meetings and stakeholder updates.
                     </p>
