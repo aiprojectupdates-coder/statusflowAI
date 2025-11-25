@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/statusflowAI/static/css/main.d9aaf780.css",
-    "main.js": "/statusflowAI/static/js/main.3a866bc7.js",
+    "main.css": "/statusflowAI/static/css/main.579bb28f.css",
+    "main.js": "/statusflowAI/static/js/main.a13b8c0b.js",
     "index.html": "/statusflowAI/index.html",
-    "main.d9aaf780.css.map": "/statusflowAI/static/css/main.d9aaf780.css.map",
-    "main.3a866bc7.js.map": "/statusflowAI/static/js/main.3a866bc7.js.map"
+    "main.579bb28f.css.map": "/statusflowAI/static/css/main.579bb28f.css.map",
+    "main.a13b8c0b.js.map": "/statusflowAI/static/js/main.a13b8c0b.js.map"
   },
   "entrypoints": [
-    "static/css/main.d9aaf780.css",
-    "static/js/main.3a866bc7.js"
+    "static/css/main.579bb28f.css",
+    "static/js/main.a13b8c0b.js"
   ]
 }
